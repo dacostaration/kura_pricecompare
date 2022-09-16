@@ -71,6 +71,13 @@ echo "---------------------------------------------------------"
 # echo "---------------------------------------------------------"
 read -p "[${bot}]: What is your budget [Whole Number Only! No $ or .]: " budget
 echo "---------------------------------------------------------"
+
+# exit if product or budget are empty
+if [[ -z "$product" || -z "$budget" ]]; then 
+    echo "You must enter both product and budget values!"
+    exit 1
+fi
+
 budgetInt=$(printf %0.f "$budget")
 echo "Ok! Let's use your budget of $ ${budgetInt}, and compare it to what the average \"${product}\" is going for these days..."
 sleep 1
@@ -90,6 +97,11 @@ sleep 1
 eBayRes=$(eval "python3 ebay.py '"$product"' 2>&1")
 # echo "eBayRes: ${eBayRes}"
 # echo "---------------------------------------------------------"
+resErr=${eBayRes:0:5}   # ERROR:
+if [ "$resErr" == "ERROR" ]; then 
+    echo $eBayRes
+    exit 1
+fi
 
 # split output into array
 # Note that the characters in $IFS are treated individually as separators so that in the case [IFS=', '], fields may be separated by either a comma or a space 
