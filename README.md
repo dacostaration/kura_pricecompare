@@ -1,7 +1,7 @@
 # kura_pricecompare
 # Compare Your Budget to the Average Pricing for Product on eBay
 
-# Bash script that will run Python to call Amazon and eBay marketplace APIs in order to compare average pricing 
+* Bash script that will run Python to call Amazon and eBay marketplace APIs in order to compare average pricing 
 # for a user input item
 # ---
 # Author: R. Da Costa
